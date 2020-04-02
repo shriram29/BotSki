@@ -5,15 +5,13 @@ const https = require("https");
 
 const bot = new Discord.Client();
 
-var globals = {};
-globals.resStr = "";
 
 // Place 'token.js' in the root, if you dont have download it form our  Discord server 
 const token = require('./token')
 
 
 // Prefix for all our commands
-const prefix ='!';
+const prefix = '!';
 
 
 // https: //discord.js.org/#/ = DOCUMENTATION
@@ -50,7 +48,7 @@ bot.on('guildMemberAdd', member => {
 
 
 // Function called when a message is received
-bot.on('message', msg=>{
+bot.on('message', msg => {
     //  NOTE: isMemberMentioned is depricated
     // if (msg.isMemberMentioned(bot.user)) {
     //     msg.reply('Hey groot, Use !help to know what i can do or !info to know about me.');
@@ -63,9 +61,9 @@ bot.on('message', msg=>{
     // ... 
     let args = msg.content.substring(prefix.length).split(" ");
 
-    switch (args[0]){
+    switch (args[0]) {
         case 'react':
-            switch(args[1]){
+            switch (args[1]) {
                 case '1':
                     const attachment = new Discord.MessageAttachment('https://i.imgur.com/dQQqaMP.png');
                     msg.channel.send(attachment);
@@ -90,18 +88,18 @@ bot.on('message', msg=>{
                     const attachment5 = new Discord.MessageAttachment('https://i.imgur.com/VlFZn6k.png');
                     msg.channel.send(attachment5);
                     break;
-                case '7': 
+                case '7':
                     const attachment6 = new Discord.MessageAttachment('https://i.imgur.com/23yQN04.png');
                     msg.channel.send(attachment6);
                     break;
             }
             break;
-        
+
         case 'welcome':
             const attachment7 = new Discord.MessageAttachment('https://i.imgur.com/O9fbO4L.png');
             msg.channel.send(attachment7);
-            break; 
-        
+            break;
+
         case 'covid':
             var url = 'https://api.covid19india.org/data.json';
             https.get(url, function (res) {
@@ -111,22 +109,22 @@ bot.on('message', msg=>{
                 });
                 res.on('end', function () {
                     var data = JSON.parse(body);
-                    globals.resStr +="Covid19 - India Stats\n\n";
-                    globals.resStr +="\`";
-                    globals.resStr += "Active    : " + data['statewise'][0]['active'].toString() + '\n';
-                    globals.resStr += "Confirmed : " + data['statewise'][0]['confirmed'].toString() + '\n';
-                    globals.resStr += "Recovered : " + data['statewise'][0]['recovered'].toString() + '\n';
-                    globals.resStr += "Deaths    : " + data['statewise'][0]['deaths'].toString() + '\n\n';
+                    let resStr = "Covid19 - India Stats\n\n";
+                    resStr += "\`";
+                    resStr += "Active    : " + data['statewise'][0]['active'].toString() + '\n';
+                    resStr += "Confirmed : " + data['statewise'][0]['confirmed'].toString() + '\n';
+                    resStr += "Recovered : " + data['statewise'][0]['recovered'].toString() + '\n';
+                    resStr += "Deaths    : " + data['statewise'][0]['deaths'].toString() + '\n\n';
                     // ta.ago(new Date(data['statewise'][0]['lastupdatedtime']).toUTCString())
-                    globals.resStr += "Last Updated " + data['statewise'][0]['lastupdatedtime'] + '\n';
-                    globals.resStr += "\`";
-                    msg.channel.send(globals.resStr);
+                    resStr += "Last Updated " + data['statewise'][0]['lastupdatedtime'] + '\n';
+                    resStr += "\`";
+                    msg.channel.send(resStr);
                 });
             }).on('error', function (e) {
                 console.log("Got an error: ", e);
             });
             break;
-        
+
     }
 });
 
