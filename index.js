@@ -46,7 +46,7 @@ bot.on('guildMemberAdd', member => {
 
 // Function called when a message is received
 bot.on('message', msg=>{
-
+    //  NOTE: isMemberMentioned is depricated
     // if (msg.isMemberMentioned(bot.user)) {
     //     msg.reply('Hey groot, Use !help to know what i can do or !info to know about me.');
     // }
