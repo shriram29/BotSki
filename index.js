@@ -32,15 +32,14 @@ bot.on('ready', () => {
 });
 
 // New member welcome message
-// NOTE: This isnt working,
 bot.on('guildMemberAdd', member => {
     // Send the message to a designated channel on a server:
-    const channel = member.guild.channels.cache.find(ch => ch.name === 'member-log');
+    const channel = member.guild.channels.cache.find(c => c.name === 'new-boi'); // change this to the channel name you want to send the greeting to
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
     // Send the message, mentioning the member
     const attachment = new MessageAttachment('https://i.imgur.com/O9fbO4L.png');
-    channel.send(`${member} ${attachment}`);
+    channel.send(`Welcome ${member}! ${attachment}`);
 });
 
 
