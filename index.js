@@ -1,6 +1,12 @@
 // OC code :)
 const Discord = require('discord.js');
+const https = require("https");
+// const ta = require('time-ago')
+
 const bot = new Discord.Client();
+
+var globals = {};
+globals.resStr = "";
 
 // Place 'token.js' in the root, if you dont have download it form our  Discord server 
 const token = require('./token')
@@ -84,7 +90,7 @@ bot.on('message', msg=>{
                     const attachment5 = new Discord.MessageAttachment('https://i.imgur.com/VlFZn6k.png');
                     msg.channel.send(attachment5);
                     break;
-                case '7':
+                case '7': 
                     const attachment6 = new Discord.MessageAttachment('https://i.imgur.com/23yQN04.png');
                     msg.channel.send(attachment6);
                     break;
@@ -95,6 +101,31 @@ bot.on('message', msg=>{
             const attachment7 = new Discord.MessageAttachment('https://i.imgur.com/O9fbO4L.png');
             msg.channel.send(attachment7);
             break; 
+        
+        case 'covid':
+            var url = 'https://api.covid19india.org/data.json';
+            https.get(url, function (res) {
+                var body = '';
+                res.on('data', function (chunk) {
+                    body += chunk;
+                });
+                res.on('end', function () {
+                    var data = JSON.parse(body);
+                    globals.resStr +="Covid19 - India Stats\n\n";
+                    globals.resStr +="\`";
+                    globals.resStr += "Active    : " + data['statewise'][0]['active'].toString() + '\n';
+                    globals.resStr += "Confirmed : " + data['statewise'][0]['confirmed'].toString() + '\n';
+                    globals.resStr += "Recovered : " + data['statewise'][0]['recovered'].toString() + '\n';
+                    globals.resStr += "Deaths    : " + data['statewise'][0]['deaths'].toString() + '\n\n';
+                    // ta.ago(new Date(data['statewise'][0]['lastupdatedtime']).toUTCString())
+                    globals.resStr += "Last Updated " + data['statewise'][0]['lastupdatedtime'] + '\n';
+                    globals.resStr += "\`";
+                    msg.channel.send(globals.resStr);
+                });
+            }).on('error', function (e) {
+                console.log("Got an error: ", e);
+            });
+            break;
         
     }
 });

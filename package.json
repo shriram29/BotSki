@@ -1,14 +1,15 @@
 {
   "name": "botskey",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "2nd Son of Baskar and fork of Son of Anton",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "author": "Shriram",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.1.1"
+    "discord.js": "^12.1.1",
+    "time-ago": "^0.2.1"
   }
 }
