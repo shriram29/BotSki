@@ -61,7 +61,9 @@ bot.on('message', msg => {
     // args[1] = 'two'
     // ... 
     let args = msg.content.substring(prefix.length).split(" ");
-    console.log(msg.mentions.has(bot.user))
+    if (msg.mentions.has(bot.user)){
+        msg.channel.send("\`$ Summon.exe : Successful\n$ Waiting for Command ... \n$ Use !help for help     \n\`");
+    }
     switch (args[0]) {
         case 'react':
             switch (args[1]) {
