@@ -110,16 +110,91 @@ bot.on('message', msg => {
                 });
                 res.on('end', function () {
                     var data = JSON.parse(body);
-                    let resStr = "Covid19 - India Stats\n\n";
-                    resStr += "\`";
-                    resStr += "Active    : " + data['statewise'][0]['active'].toString() + '\n';
-                    resStr += "Confirmed : " + data['statewise'][0]['confirmed'].toString() + '\n';
-                    resStr += "Recovered : " + data['statewise'][0]['recovered'].toString() + '\n';
-                    resStr += "Deaths    : " + data['statewise'][0]['deaths'].toString() + '\n\n';
-                    // ta.ago(new Date(data['statewise'][0]['lastupdatedtime']).toUTCString())
-                    resStr += "Last Updated " + data['statewise'][0]['lastupdatedtime'] + '\n';
-                    resStr += "\`";
-                    msg.channel.send(resStr);
+                    let active      = data['statewise'][0]['active'].toString();
+                    let confirmed = data['statewise'][0]['confirmed'].toString();
+                    let recovered   = data['statewise'][0]['recovered'].toString();
+                    let deaths      = data['statewise'][0]['deaths'].toString();
+                    let deltaconfirmed  = data['statewise'][0]['deltaconfirmed'].toString();
+                    let deltadeaths     = data['statewise'][0]['deltadeaths'].toString();
+                    let deltarecovered  = data['statewise'][0]['deltarecovered'].toString();
+                    let Updated     = data['statewise'][0]['lastupdatedtime'].toString();
+
+                    msg.channel.send({
+                        embed: {
+                            "url": "https://www.covid19india.org/",
+                            "color": 13632027,
+                            "timestamp" : new Date(),
+                            "footer": {
+                                "text": "Last Updated " + Updated +""
+                            },
+                            "description": "Total confirmed : " + confirmed,
+                            "author": {
+                                "name": "COVID19 India Stats",
+                                "url": "https://www.covid19india.org/",
+                                "icon_url": "https://avatars3.githubusercontent.com/u/62393982?s=200&v=4"
+                            },
+                            "fields": [
+                                {
+                                    "name": "\u200B",
+                                    "value": "\u200B",
+                                    "inline": true
+                                },
+                                {
+                                    "name": "\u200B ",
+                                    "value": "Today",
+                                    "inline": true
+                                },
+                                {
+                                    "name": "\u200B ",
+                                    "value": "\u200B",
+                                    "inline": true
+                                },
+                                {
+                                    "name": "Confirmed ",
+                                    "value": deltaconfirmed,
+                                    "inline": true
+                                },
+                                {
+                                    "name": "Recovered ",
+                                    "value": deltarecovered,
+                                    "inline": true
+                                },
+                                {
+                                    "name": "Deaths ",
+                                    "value": deltadeaths,
+                                    "inline": true
+                                }, {
+                                    "name": "\u200B",
+                                    "value": "\u200B",
+                                    "inline": true
+                                }, {
+                                    "name": "\u200B ",
+                                    "value": "Total",
+                                    "inline": true
+                                }, {
+                                    "name": "\u200B ",
+                                    "value": "\u200B",
+                                    "inline": true
+                                },
+                                {
+                                    "name": " Active",
+                                    "value": active,
+                                    "inline": true
+                                }, 
+                                {
+                                    "name": " Recovered",
+                                    "value": recovered,
+                                    "inline": true
+                                },
+                                {
+                                    "name": " death",
+                                    "value": deaths,
+                                    "inline": true
+                                }
+
+                            ]
+                        }
+                    });
                 });
             }).on('error', function (e) {
                 console.log("Got an error: ", e);
@@ -145,10 +220,11 @@ bot.on('message', msg => {
                             name: "Description",
                             value: "Son Of Anton is secretly powered by quantum robot groots. Currently fluent with grooten he's learning English.\n\n"
                         },
+                        
                         {
                             name: "🤖💫⭐️✨⚡️☄️🌟🔥🌪🌈☀️💥",
                             value: "```Use !help to know more```"
-                        }
+                        } 
                     ],
                     timestamp: new Date(),
                     footer: {
