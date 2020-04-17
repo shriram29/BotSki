@@ -4,8 +4,21 @@ const https = require("https");
 // const ta = require('time-ago')
 
 const bot = new Discord.Client();
-const botVer = "1.2";
 
+// Bot meta
+const botVer = "1.2";
+const botDate ="17/04/20 4:00PM";
+let botNew ="";
+botNew += "```✔️ !info Added \n```";
+botNew += "```✔️ !log Added \n```";
+botNew += "```✔️ !help Added \n```";
+botNew += "```✔️ Summon Added \n```";
+let botUpdate ="";
+botUpdate += "```💣 !Covid - *Updated* \n```";
+
+// global gifs
+let welcomeGifs = ["https://media.giphy.com/media/LPaBB9d1GegMFC75Qf/giphy.gif", "https://media.giphy.com/media/LQ2nRiL5Au4nD4cNw7/giphy.gif", "https://media.giphy.com/media/553wiYN2lOZz5CBdpF/giphy.gif", "https://media.giphy.com/media/mTs11L9uuyGiI/giphy.gif", "https://media.giphy.com/media/1iZS2vRXtTlBI1a0/giphy.gif", "https://media.giphy.com/media/iugZw96Gq1gmk/giphy.gif"];
+let emojiList = ["✌", "😂", "😝", "😁", "😱", "👉", "🙌", "🍻", "🔥", "🌈", "☀", "🎈", "🌹", "💄", "🎀", "⚽", "🎾", "🏁", "😡", "👿", "🐻", "🐶", "🐬", "🐟", "🍀", "👀", "🚗", "🍎", "💝", "💙", "👌", "❤", "😍", "😉", "😓", "😳", "💪", "💩", "🍸", "🔑", "💖", "🌟", "🎉", "🌺", "🎶", "👠", "🏈", "⚾", "🏆", "👽", "💀", "🐵", "🐮", "🐩", "🐎", "💣", "👃", "👂", "🍓", "💘", "💜", "👊", "💋", "😘", "😜", "😵", "🙏", "👋", "🚽", "💃", "💎", "🚀", "🌙", "🎁", "⛄", "🌊", "⛵", "🏀", "🎱", "💰", "👶", "👸", "🐰", "🐷", "🐍", "🐫", "🔫", "👄", "🚲", "🍉", "💛", "💚"];
 // Place 'token.js' in the root, if you dont have download it form our  Discord server 
 const token = require('./token')
 
@@ -42,8 +55,8 @@ bot.on('guildMemberAdd', member => {
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
     // Send the message, mentioning the member
-    const attachment = new Discord.MessageAttachment('https://i.imgur.com/O9fbO4L.png');
-    channel.send(`Hey ${member}!`);
+    const attachment = new Discord.MessageAttachment(welcomeGifs[Math.floor(Math.random() * welcomeGifs.length)]);
+    channel.send(`Welcome ${member} `+emojiList[Math.floor(Math.random() * emojiList.length)] +' !');
     channel.send(attachment);
 });
 
@@ -67,33 +80,60 @@ bot.on('message', msg => {
     switch (args[0]) {
         case 'react':
             switch (args[1]) {
-                case '1':
+                case 'b1':
                     const attachment = new Discord.MessageAttachment('https://i.imgur.com/dQQqaMP.png');
                     msg.channel.send(attachment);
                     break;
-                case '2':
+                case 'b2':
                     const attachment1 = new Discord.MessageAttachment('https://i.imgur.com/UC6YLky.png');
                     msg.channel.send(attachment1);
                     break;
-                case '3':
+                case 'b3':
                     const attachment2 = new Discord.MessageAttachment('https://i.imgur.com/lQ7VBF2.png');
                     msg.channel.send(attachment2);
                     break;
-                case '4':
+                case 'b4':
                     const attachment3 = new Discord.MessageAttachment('https://i.imgur.com/YxZzO4H.png');
                     msg.channel.send(attachment3);
                     break;
-                case '5':
+                case 'b5':
                     const attachment4 = new Discord.MessageAttachment('https://i.imgur.com/gjb11q7.png');
                     msg.channel.send(attachment4);
                     break;
-                case '6':
+                case 'b6':
                     const attachment5 = new Discord.MessageAttachment('https://i.imgur.com/VlFZn6k.png');
                     msg.channel.send(attachment5);
                     break;
-                case '7':
+                case 'b7':
                     const attachment6 = new Discord.MessageAttachment('https://i.imgur.com/23yQN04.png');
                     msg.channel.send(attachment6);
+                    break;
+                case 'rkt':
+                    const attachment7 = new Discord.MessageAttachment('https://media.giphy.com/media/G6i8s8IyQYS4g/giphy.gif');
+                    msg.channel.send(attachment7);
+                    break;
+                case 'rand':
+                    const attachment8 = new Discord.MessageAttachment(welcomeGifs[Math.floor(Math.random() * welcomeGifs.length)]);
+                    msg.channel.send(attachment8);
+                    break;
+                case 'help':
+                    let reactList = "";
+                    reactList += "```rkt - r3kt gif\n```";
+                    reactList += "```rand - Random gif ```";
+                    msg.channel.send({
+                        embed: {
+                            color: 12118406,
+                            title: "Available Reactions " + emojiList[Math.floor(Math.random() * emojiList.length)] + " :",
+                            description: "Usage: !react [Name]",
+                            fields: [{
+                                name: "Name:",
+                                value: reactList
+                            }],
+                            footer: {
+                                text: emojiList[Math.floor(Math.random() * emojiList.length)] + " " + emojiList[Math.floor(Math.random() * emojiList.length)] + " " + emojiList[Math.floor(Math.random() * emojiList.length)] + " "
+                            }
+                        }
+                    });
                     break;
             }
             break;
@@ -137,19 +177,8 @@ bot.on('message', msg => {
                             },
                             "fields": [
                                 {
-                                    "name": "\u200B",
-                                    "value": "\u200B",
-                                    "inline": true
-                                },
-                                {
                                     "name": "\u200B ",
-                                    "value": "Today",
-                                    "inline": true
-                                },
-                                {
-                                    "name": "\u200B ",
-                                    "value": "\u200B",
-                                    "inline": true
+                                    "value": "Today"
                                 },
                                 {
                                     "name": "Confirmed ",
@@ -165,18 +194,10 @@ bot.on('message', msg => {
                                     "name": "Deaths ",
                                     "value": deltadeaths,
                                     "inline": true
-                                }, {
-                                    "name": "\u200B",
-                                    "value": "\u200B",
-                                    "inline": true
-                                }, {
+                                }, 
+                                {
                                     "name": "\u200B ",
-                                    "value": "Total",
-                                    "inline": true
-                                }, {
-                                    "name": "\u200B ",
-                                    "value": "\u200B",
-                                    "inline": true
+                                    "value": "Total"
                                 },
                                 {
                                     "name": " Active",
@@ -200,6 +221,29 @@ bot.on('message', msg => {
                 });
             }).on('error', function (e) {
                 console.log("Got an error: ", e);
+            });
+            break;
+        case 'help':
+            let commandList ="";
+            commandList += "```!react - Sends stickers. Use \"!react help\" for more.\n```";
+            commandList += "```!covid - Get the latest Covid19 numbers.```";
+            commandList += "```!log - Bot update logs.```";
+            commandList += "```!info - Know about the bot.```";
+            msg.channel.send({
+                embed: {
+                    color: 12118406,
+                    title: "Available Commands :",
+                    description: "Commands are case-sensitive and starts with \"!\"",
+                    fields: [
+                        {
+                            name: "\u200B",
+                            value: commandList
+                        }
+                    ],
+                    footer: {
+                        text: "For suggestions/help contact devs."
+                    }
+                }
             });
             break;
         case 'info':
@@ -233,6 +277,24 @@ bot.on('message', msg => {
                         icon_url: 'https://i.imgur.com/dG966Od.png',
                         text: "Build🆔 "+botVer+"✔️"
                     }
+                }
+            });
+            break;
+        case 'log':
+            msg.channel.send({
+                "embed": {
+                    "title": "Change Logs for " + "Build🆔  " + botVer ,
+                    "color": 9056477,
+                    "footer": {
+                        "text": "Updated on " + botDate + " 🏷️"
+                    },
+                    "fields": [{
+                        "name": "New features 🔥:",
+                        "value": botNew
+                    }, {
+                        "name": "Updates 👍:",
+                        "value": botUpdate
+                    }]
                 }
             });
             break;
