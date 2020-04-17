@@ -38,12 +38,13 @@ bot.on('ready', () => {
 // New member welcome message
 bot.on('guildMemberAdd', member => {
     // Send the message to a designated channel on a server:
-    const channel = member.guild.channels.cache.find(c => c.name === 'new-boi'); // change this to the channel name you want to send the greeting to
+    const channel = member.guild.channels.cache.find(c => c.name === 'welcome'); // change this to the channel name you want to send the greeting to
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
     // Send the message, mentioning the member
-    const attachment = new MessageAttachment('https://i.imgur.com/O9fbO4L.png');
-    channel.send(`Welcome ${member}! ${attachment}`);
+    const attachment = new Discord.MessageAttachment('https://i.imgur.com/O9fbO4L.png');
+    channel.send(`Hey ${member}!`);
+    channel.send(attachment);
 });
 
 
@@ -60,7 +61,7 @@ bot.on('message', msg => {
     // args[1] = 'two'
     // ... 
     let args = msg.content.substring(prefix.length).split(" ");
-
+    console.log(msg.mentions.has(bot))
     switch (args[0]) {
         case 'react':
             switch (args[1]) {
@@ -122,6 +123,39 @@ bot.on('message', msg => {
                 });
             }).on('error', function (e) {
                 console.log("Got an error: ", e);
+            });
+            break;
+        case 'info':
+            msg.channel.send({
+                embed: {
+                    color: 3447003,
+                    author: {
+                        name: bot.user.username,
+                        icon_url: 'https://i.imgur.com/dG966Od.png'
+                    },
+                    title: "(>‿◠)✌",
+                    url: "http://google.com",
+                    description: "i am groot?",
+                    fields: [
+                        {
+                            name: "Devs 👨‍💻",
+                            value: "[@WatchDog](http://shriram.xyz/)"
+                        },
+                        {
+                            name: "Description",
+                            value: "Son Of Anton is secretly powered by quantum robot groots. Currently fluent with grooten he's learning English.\n\n"
+                        },
+                        {
+                            name: "🤖💫⭐️✨⚡️☄️🌟🔥🌪🌈☀️💥",
+                            value: "```Use !help to know more```"
+                        }
+                    ],
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: 'https://i.imgur.com/dG966Od.png',
+                        text: "Build🆔 1.2✔️"
+                    }
+                }
             });
             break;
 
