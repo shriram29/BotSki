@@ -4,7 +4,7 @@ const https = require("https");
 // const ta = require('time-ago')
 
 const bot = new Discord.Client();
-
+const botVer = "1.2";
 
 // Place 'token.js' in the root, if you dont have download it form our  Discord server 
 const token = require('./token')
@@ -61,7 +61,7 @@ bot.on('message', msg => {
     // args[1] = 'two'
     // ... 
     let args = msg.content.substring(prefix.length).split(" ");
-    console.log(msg.mentions.has(bot))
+    console.log(msg.mentions.has(bot.user))
     switch (args[0]) {
         case 'react':
             switch (args[1]) {
@@ -139,7 +139,7 @@ bot.on('message', msg => {
                     fields: [
                         {
                             name: "Devs 👨‍💻",
-                            value: "[@WatchDog](http://shriram.xyz/)"
+                            value: "[@WatchDog](https://github.com/shriram29)"
                         },
                         {
                             name: "Description",
@@ -153,7 +153,7 @@ bot.on('message', msg => {
                     timestamp: new Date(),
                     footer: {
                         icon_url: 'https://i.imgur.com/dG966Od.png',
-                        text: "Build🆔 1.2✔️"
+                        text: "Build🆔 "+botVer+"✔️"
                     }
                 }
             });
