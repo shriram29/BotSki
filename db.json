@@ -1,6 +1,13 @@
 {
     "playlist": [{
         "id": 0,
-        "links": ["https://www.youtube.com/feed/trending", "https://www.youtube.com/feed/trending"]
-    }]
+        "links": [
+            "https://www.youtube.com/watch?v=qzdofuO5pm4",
+            "https://www.youtube.com/watch?v=sqIb7lqDSVI"
+        ]
+    }],
+    "welcomeGifs": [
+        "https://media.giphy.com/media/LPaBB9d1GegMFC75Qf/giphy.gif",
+        "https://media.giphy.com/media/LQ2nRiL5Au4nD4cNw7/giphy.gif"
+    ]
 }
