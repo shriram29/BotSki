@@ -115,4 +115,4 @@ dist
 .pnp.*
 
 # creds
-token.js*
+auth/*
