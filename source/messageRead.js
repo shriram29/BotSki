@@ -1,11 +1,16 @@
 const { showPlaylist, showDefault, showCovidDetails } = require('./utils/helper');
+const showReact = require("./utils/showReact");
+const showCovid = require("./utils/showCovid");
+const showInfo = require("./utils/showInfo");
+const showHelp = require("./utils/showHelp");
+const showLog = require("./utils/showLog");
 
 const prefix = '!';
 
 
 module.exports = (bot) => {
 
-    bot.on('message', (message) => {
+    bot.on('message', async (message) => {
 
         if (message.author.bot) return;        
         if (!message.content.startsWith(prefix)) return;
@@ -20,25 +25,24 @@ module.exports = (bot) => {
                 '`$ Summon.exe : Successful\n$ Waiting for Command ... \n$ Use !help for help     \n`'
             );
         }
-
         switch (command) {
             
             case 'react':
-            case 'info':
-            case 'log':
-            case 'help':
-            case 'update':
-                showDefault(message, command, bot, text);
+                showReact(message,text);
                 break;
-
+            case 'info':
+                showInfo(message, text,bot.user.username);
+                break;
+            case 'log':
+                showLog(message, text, bot.user.username);
+                break;
+            case 'help':
+                showHelp(message, text);
+                break;
             case 'covid':
-                showCovidDetails(message, text);
+                showCovid(message, text);
                 break;
     
-            case 'playlist':
-                showPlaylist(message, text);
-                break;
-
             case 'clip' : 
                 playClip(message, text); 
                 break;
