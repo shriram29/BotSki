@@ -1,8 +1,0 @@
-{
-    "name": "BotSki",
-    "description": "A Discord Bot",
-    "repository": "https://github.com/shriram29/BotSki",
-    "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
-    "keywords": ["node", "express", "heroku"],
-    "image": "heroku/nodejs"
-}

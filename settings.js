@@ -25,7 +25,6 @@ module.exports = {
     commands:[
         "!react - Sends stickers. Use \"!react help\" for more.",
         "!covid - Get the latest Covid19 numbers.",
-        "!welcome - Welcome someone with style!.",
         "!log - Bot update logs.",
         "!info - Know about the bot."
     ],
