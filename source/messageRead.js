@@ -4,6 +4,7 @@ const showCovid = require("./utils/showCovid");
 const showInfo = require("./utils/showInfo");
 const showHelp = require("./utils/showHelp");
 const showLog = require("./utils/showLog");
+const voteKick = require("./utils/voteKick");
 
 const prefix = '!';
 
@@ -26,7 +27,6 @@ module.exports = (bot) => {
             );
         }
         switch (command) {
-            
             case 'react':
                 showReact(message,text);
                 break;
@@ -42,14 +42,14 @@ module.exports = (bot) => {
             case 'covid':
                 showCovid(message, text);
                 break;
-    
             case 'clip' : 
                 playClip(message, text); 
                 break;
-            
+            case 'kick' : 
+                voteKick(message, args); 
+                break;
             case 'vote':
                 createPoll()
-
             default : 
                 break;
         }
