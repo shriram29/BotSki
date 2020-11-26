@@ -13,7 +13,7 @@ module.exports = async (message, text) => {
         deltaconfirmed,
         deltadeaths,
         deltarecovered,
-        updated,
+        lastupdatedtime,
     } = await getCovidInfo();
 
     var Wembed = new Discord.MessageEmbed()
@@ -38,7 +38,9 @@ module.exports = async (message, text) => {
         ])
         .setDescription(`Total confirmed : ${confirmed}`)
         .setFooter(
-            `Last Updated ${updated === undefined ? 'Unsure |' : updated}`
+            `Last Updated ${
+                lastupdatedtime === undefined ? 'Unsure |' : lastupdatedtime
+            }`
         )
         .setTimestamp(new Date());
 
