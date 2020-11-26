@@ -23,4 +23,4 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: npm restart
+    - run: /root/.nvm/versions/node/v12.20.0/bin/pm2 restart /root/actions-runner/_work/BotSki/BotSki/index.js
