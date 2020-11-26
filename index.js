@@ -5,7 +5,7 @@ const bot = new Discord.Client();
 // env
 require('dotenv').config();
 
-// DB SERVER [wtf is this shit]
+// DB SERVER
 const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
