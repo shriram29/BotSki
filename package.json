@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=prod node index.js",
-    "dev": "NODE_ENV=dev nodemon index.js"
+    "dev": "NODE_ENV=dev nodemon index.js",
+    "restart": "pm2 restart index.js"
   },
   "author": "Shriram",
   "license": "ISC",
