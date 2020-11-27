@@ -1,8 +1,8 @@
-const Discord = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 //settings
 const { botInfo } = require('../../settings');
-module.exports = (message, text, botName) => {
+module.exports = (message, text) => {
     let botNewFeatures = '',
         botUpdate = '';
 
@@ -14,10 +14,10 @@ module.exports = (message, text, botName) => {
     });
     botNewFeatures += '*use !help to know more*';
 
-    var Wembed = new Discord.MessageEmbed()
+    var Wembed = new MessageEmbed()
         .setTitle(`Change Logs for Build🆔 ${botInfo.version}`)
         .setColor('#2f2b42')
-        .setAuthor(botName)
+        .setAuthor(message.client.user.username)
         .addFields([
             { name: 'New features 🔥', value: botNewFeatures },
             { name: 'Updates 👍:', value: botUpdate },

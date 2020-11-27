@@ -1,27 +1,31 @@
-module.exports = async (msg, args) => {
-    msg.delete();
-    const mssgvar = await msg.channel.send({
+module.exports = async (message, args) => {
+    message.delete();
+
+    const mssgvar = await message.channel.send({
         embed: {
             color: 9056477,
-            description: `${msg.member} wants to kick ${args[1]}!`,
+            description: `${message.member} wants to kick ${args[1]}!`,
         },
     });
-    const voiceChannel = msg.member.voice.channel;
-    if (!msg.mentions.users.first().id)
-        return msg.channel.send({
+
+    const voiceChannel = message.member.voice.channel;
+    if (!message.mentions.users.first().id)
+        return message.channel.send({
             embed: {
                 color: 9056477,
                 description: `User doesn't exist`,
             },
         });
-    const userKick = msg.guild.member(msg.mentions.users.first().id);
+
+    const userKick = message.guild.member(message.mentions.users.first().id);
     let adminPriv = 0;
     if (args[2] == 'ImIronMan') {
         adminPriv = 1;
     }
+    
     console.log(userKick);
     if (!voiceChannel)
-        return msg.channel.send({
+        return message.channel.send({
             embed: {
                 color: 9056477,
                 description:
@@ -29,7 +33,7 @@ module.exports = async (msg, args) => {
             },
         });
     if (!userKick.voice.channel)
-        return msg.channel.send({
+        return message.channel.send({
             embed: {
                 color: 9056477,
                 description: `${args[1]} is not in the voice channel ...`,
@@ -45,7 +49,7 @@ module.exports = async (msg, args) => {
     collector.on('end', (collected) => {
         console.log(collected.get('✅').count);
         console.log(collected.get('⛔').count);
-        msg.channel.send({
+        message.channel.send({
             embed: {
                 title: 'Voting has finished! ',
                 color: 9056477,
@@ -64,7 +68,7 @@ module.exports = async (msg, args) => {
         if (collected.get('✅').count > collected.get('⛔').count) {
             userKick.voice.setMute(true, 'Nee oru pacha cancer dawww');
             if (adminPriv) userKick.voice.kick();
-            msg.channel.send({
+            message.channel.send({
                 embed: {
                     color: 9056477,
                     description: `Kicking ${args[1]}...`,

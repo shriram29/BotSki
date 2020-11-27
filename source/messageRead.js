@@ -1,40 +1,50 @@
-const { showPlaylist, showDefault, showCovidDetails } = require('./utils/helper');
-const showReact = require("./utils/showReact");
-const showCovid = require("./utils/showCovid");
-const showInfo = require("./utils/showInfo");
-const showHelp = require("./utils/showHelp");
-const showLog = require("./utils/showLog");
-const voteKick = require("./utils/voteKick");
-
-const prefix = '!';
-
+const showReact = require('./utils/showReact'); 
+const showCovid = require('./utils/showCovid');
+const showInfo = require('./utils/showInfo');
+const showHelp = require('./utils/showHelp');
+const showLog = require('./utils/showLog');
+const voteKick = require('./utils/voteKick');
+const createPoll = require('./utils/createPoll');
 
 module.exports = (bot) => {
 
     bot.on('message', async (message) => {
 
-        if (message.author.bot) return;        
-        if (!message.content.startsWith(prefix)) return;
+        const prefix = '!';
+
+        // Preliminary cheks
+        if (message.author.bot) return;    
+
+        if (message.guild){
+            if (!message.content.startsWith(prefix)) return;
+        }
     
-        const commandBody = message.content.slice(prefix.length);
+        const commandBody = (message.guild)? message.content.slice(prefix.length) : message.content;
         const args = commandBody.split(' ');
         const command = args.shift().toLowerCase();
         const text = args.join(' ')
         
+        // console.log("CommandBody:",commandBody);
+        // console.log("args:",args);
+        // console.log("command:",command);
+        // console.log("text:",text);
+
+
         if (message.mentions.has(bot.user)) {
             message.channel.send(
                 '`$ Summon.exe : Successful\n$ Waiting for Command ... \n$ Use !help for help     \n`'
             );
         }
+
         switch (command) {
             case 'react':
                 showReact(message,text);
                 break;
             case 'info':
-                showInfo(message, text,bot.user.username);
+                showInfo(message, text);
                 break;
             case 'log':
-                showLog(message, text, bot.user.username);
+                showLog(message, text);
                 break;
             case 'help':
                 showHelp(message, text);
@@ -49,7 +59,7 @@ module.exports = (bot) => {
                 voteKick(message, args); 
                 break;
             case 'vote':
-                createPoll()
+                createPoll(message, text)
             default : 
                 break;
         }

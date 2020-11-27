@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-const { getListOfChannels } = require('./utils/helper');
+const { getListOfChannels } = require('./helper/helper');
 const { fetchJokes } = require('../api/reddit');
 
 const draftJoke =  async (bot) => {
@@ -32,8 +32,6 @@ module.exports = (bot) => {
     var hoursInMilliseconds = minutesInMillisecond * 60;
     var dayInMilliseconds = hoursInMilliseconds* 24;
 
-
-    console.log('Setting reddit jokes on setInterval')
     setInterval(draftJoke, dayInMilliseconds, bot);
 }
 
