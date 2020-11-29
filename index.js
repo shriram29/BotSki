@@ -4,7 +4,7 @@ const bot = new Discord.Client();
 
 // env
 require('dotenv').config();
-
+// testing CICD
 // let the bot conquer the world
 bot.login(process.env.BOT_TOKEN).then(() => {
     require('./source/readyState')(bot);
