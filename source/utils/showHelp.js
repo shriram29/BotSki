@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 //settings
 const {commands} = require('../../settings');
@@ -7,7 +7,7 @@ module.exports = (message, text) => {
     let commandList = '';
     commands.forEach((command) => (commandList += '```' + command + '```'));
 
-    var Wembed = new Discord.MessageEmbed()
+    var Wembed = new MessageEmbed()
         .setTitle('Available Commands')
         .setColor('#2200ff')
         .addFields({ name: '\u200B', value: commandList })

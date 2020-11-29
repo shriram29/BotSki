@@ -4,8 +4,8 @@
   "description": "2nd Son of Baskar and fork of Son of Anton",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "NODE_ENV=prod node index.js",
+    "dev": "NODE_ENV=dev nodemon index.js",
     "restart": "pm2 restart index.js"
   },
   "author": "Shriram",
@@ -14,6 +14,7 @@
     "@discordjs/opus": "^0.3.3",
     "discord.js": "^12.1.1",
     "dotenv": "^8.2.0",
+    "minimist": "^1.2.5",
     "node-fetch": "^2.6.1",
     "nodemon": "^2.0.6"
   }

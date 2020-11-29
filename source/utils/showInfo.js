@@ -1,13 +1,13 @@
-const Discord = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 //settings
 const { botInfo } = require('../../settings');
 
-module.exports = (message, text, botName) => {
-    var Wembed = new Discord.MessageEmbed()
+module.exports = (message, text) => {
+    var Wembed = new MessageEmbed()
         .setTitle('(>‿◠)✌')
         .setColor('#24f3ff')
-        .setAuthor(botName)
+        .setAuthor(message.client.user.username)
         .addFields([
             { name: '\u200B', value: '\u200B' },
             {
@@ -37,4 +37,6 @@ module.exports = (message, text, botName) => {
 
     message.channel.send(Wembed);
     message.react('👍');
+
+    console.log();
 };

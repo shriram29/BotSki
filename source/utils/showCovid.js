@@ -1,5 +1,5 @@
 // Discord OG
-const Discord = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 // Api 
 const getCovidInfo = require('../../api/covid');
@@ -16,7 +16,7 @@ module.exports = async (message, text) => {
         lastupdatedtime,
     } = await getCovidInfo();
 
-    var Wembed = new Discord.MessageEmbed()
+    var Wembed = new MessageEmbed()
         .setURL('https://www.covid19india.org/')
         .setTitle('Covid-19 Stats')
         .setColor('#24f3ff')
