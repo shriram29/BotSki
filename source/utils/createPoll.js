@@ -1,7 +1,7 @@
 const minimist = require('minimist');
 const { MessageEmbed, Collection } = require('discord.js');
 
-const { getRandomSubarray, getRandomElement } = require('../helper/helper');
+const { getRandomSubarray, getRandomElement, getCurrentTime } = require('../helper/helper');
 const { emojiList } = require('../../settings');
 
 
@@ -67,57 +67,74 @@ const checkVotingParams = (message, choice) => {
     return valid
 }
 
+const structureResult = async (collected, mapping, embedParams) => {
+
+        var fields = [];
+
+        for await (const collect of collected) {
+            emoji = collect[0];
+            mapping[emoji].value = collect[1].count - 1;
+
+            let {name, value} = mapping[emoji];
+
+            fields.push({name : `${name.replace(/_/g, ' ')} \t ${emoji}\t ${value}`, value : '\u200B'});
+
+            // results += `${emoji} ${name}  :  ${value}\n`
+        }
+
+
+        var Wembed = new MessageEmbed()
+            .setColor('#0099ff')
+            .addFields(fields)
+            .setTitle(embedParams.message)
+            .setAuthor("POLL HAS ENDED")
+            .setFooter(`${embedParams.author} started a poll on ${embedParams.time}`)
+
+            
+        return Wembed;
+
+}
+
 module.exports = async (message, text) => {
 
 
     var choice = getVotingParams(text);
-    let checks = checkVotingParams(message, choice);
+    var checks = checkVotingParams(message, choice);
 
-    if (!checks) {
-        message.delete({timeout : 5000})
-        return;
-    }
+    if (!checks) {message.delete({timeout : 5000}); return;}
 
-
-    var YesOrNo = getRandomElement([ ['✅','❎'], ['👍', '👎']]);
-    var emojiSubset = (choice.option.length >= 2)? getRandomSubarray(emojiList, choice.option.length) : YesOrNo;
+    var emojiSubset = (choice.option.length >= 2)? getRandomSubarray(emojiList, choice.option.length) : getRandomElement([ ['✅','❎'], ['👍', '👎']]);
     if (choice.option.length == 0) choice.option = ['Yes', 'No'];
 
-    var connection = {};
-    var fields = []
+    var fields = [], mapping = {};
 
     choice.option.forEach((element, idx) =>  {
-        fields.push({name : `${element} \t ${emojiSubset[idx]}`, value : '\u200B'});
-        connection[emojiSubset[idx]] = { value : 0, name : element };
+        fields.push({name : `${element.replace(/_/g, ' ')} \t ${emojiSubset[idx]}`, value : '\u200B'});
+        mapping[emojiSubset[idx]] = { value : 0, name : element };
     });
-    
+
+    var embedParams = {author : message.author.username, time : getCurrentTime(), message : choice.message.slice(1,-1)};
+
     var Wembed = new MessageEmbed()
         .setColor('#0099ff')
         .setThumbnail(message.author.avatarURL)
         .setAuthor("POLLING TIME")
         .addFields(fields)
-        .setTitle(choice.message.slice(1,-1))
-        .setFooter(`${message.author.username} has started a poll  |\t ${choice.time} minute(s)`)
+        .setTitle(embedParams.message)
+        .setFooter(`${embedParams.author} has started a poll  |\t ${choice.time} minute(s)`)
 
     discordMessage = await message.channel.send(Wembed);
     emojiSubset.forEach((element,index) => discordMessage.react(element))
 
-    const filter = (reaction, user) => emojiSubset.includes(reaction.emoji.name);
-    const collector = discordMessage.createReactionCollector(filter, {time: (1000 * choice.time * 60)});
+    const collector = discordMessage.createReactionCollector((reaction, user) => emojiSubset.includes(reaction.emoji.name), {time: (1000 * choice.time * 60)});
 
-    // collector.on('collect', (reaction, user) => console.log(`${user.username} has voted`))
+    collector.on('end', async collected => {
 
-    var results = {}
+        let newEmbed = await structureResult(collected, mapping, embedParams);
+        discordMessage.edit(newEmbed);
 
-    console.log(connection);
+    })
 
-    collector.on('end', collected => {
-        for (let collect of collected) {
-            connection[collect[0]].value = collect[1].count - 1
-        }
-        console.log(connection);
-        message.channel.send('Polling is over. Doesn\'t matter, Bosskey is still a hoe.');
-    });
     
     message.delete({timeout : 5000})
 

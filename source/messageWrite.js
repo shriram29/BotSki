@@ -16,7 +16,7 @@ const draftJoke =  async (bot) => {
 
     channels.forEach(element => {
 
-        if (element.channelName === 'development🖥'){
+        if (element.channelName === 'bird-chat'){
             let textChannel = bot.channels.cache.get(element.channelId);
             textChannel.send(Wembed);
         }

@@ -30,8 +30,18 @@ const getListOfChannels = async (bot) => {
     return array
 };
 
+const getCurrentTime = () => {
+    
+    let date = new Date();  
+    let options = {weekday: "long", year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"  };  
+    let timeNow = date.toLocaleTimeString("en-us", options);    
+
+    return timeNow;
+}
+
 module.exports = {
     getListOfChannels,
     getRandomElement,
-    getRandomSubarray
+    getRandomSubarray,
+    getCurrentTime
 }
