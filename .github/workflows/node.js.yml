@@ -23,8 +23,4 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: echo $host
-    - run: pm2 startup ubuntu -u node
-    - run: /root/.nvm/versions/node/v12.20.0/bin/pm2 status
-    - run: curl https://wtfismyip.com/json
-    - run: ~/botski-restart.sh
+    - run: pm2 start index.js --name botski
