@@ -11,13 +11,11 @@ module.exports = (message, choice) => {
         let attachment = new MessageAttachment(reactImage);
         message.channel.send(attachment)
         message.react("👍");
-        message.delete({timeout : 15000});
 
     }
     else if(choice === ''){
         message.channel.send(new MessageAttachment(getRandomElement(welcomeGifs)));
         message.react(getRandomElement(emojiList));
-        message.delete({timeout : 15000});
 
     }else{
 
@@ -36,7 +34,6 @@ module.exports = (message, choice) => {
         
         message.channel.send(Wembed);
         message.react("👍");
-        message.delete({timeout : 5000});
 
     }
 };
