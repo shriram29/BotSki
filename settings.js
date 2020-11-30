@@ -1,16 +1,18 @@
 module.exports = {
 
     botInfo : {
-        version: "1.3",
-        releaseDate: "05/07/20 9:00PM",
+        version: "1.4",
+        releaseDate: "30/11/20 9:00PM",
         newFeatures:[
-            "🔥 !news",
-            "🔥 !news [number] ",
+            "🔥 !kick <user>",
+            "🔥 !vote -m <message> -o <options> -t <time (in m)> ",
+            "🔥 Bosskey's words of wisdom"
         ],
     
         updates: [
             "💣 !react - *Updated*",
-            "💣 !covid - *Updated*",
+            "💣 !vote - *Updated*",
+            "💣 !kick - *Updated*",
             "Add BotSki to any server. Use !info to know more.",
         ]
     },
@@ -26,7 +28,9 @@ module.exports = {
         "!react - Sends stickers. Use \"!react help\" for more.",
         "!covid - Get the latest Covid19 numbers.",
         "!log - Bot update logs.",
-        "!info - Know about the bot."
+        "!info - Know about the bot.",
+        "!kick - Kick/Mute user ",
+        "!vote - Start a poll"
     ],
 
     reactImages : {
@@ -38,10 +42,10 @@ module.exports = {
         b6 : 'https://i.imgur.com/VlFZn6k.png',
         b7 : 'https://i.imgur.com/23yQN04.png',
         rkt : 'https://media.giphy.com/media/G6i8s8IyQYS4g/giphy.gif',
-        podabosskey : 'https://media.giphy.com/media/l2JeiuwmhZlkrVOkU/giphy.gif'
+        bosskey : 'https://media.giphy.com/media/l2JeiuwmhZlkrVOkU/giphy.gif'
     },
 
-    emojiList: ['✌', '😂', '😝', '😁', '😱', '👉', '🙌', '🍻', '🔥', '🌈', '☀', '🎈', '🌹', '💄', '🎀', '⚽', '🎾', '🏁', '😡', '👿', '🐻', '🐶', '🐬', '🐟', '🍀', '👀', '🚗', '🍎', '💝', '💙', '👌', '❤', '😍', '😉', '😓', '😳', '💪', '💩', '🍸', '🔑', '💖', '🌟', '🎉', '🌺', '🎶', '👠', '🏈', '⚾', '🏆', '👽', '💀', '🐵', '🐮', '🐩', '🐎', '💣', '👃', '👂', '🍓', '💘', '💜', '👊', '💋', '😘', '😜', '😵', '🙏', '👋', '🚽', '💃', '💎', '🚀', '🌙', '🎁', '⛄', '🌊', '⛵', '🏀', '🎱', '💰', '👶', '👸', '🐰', '🐷', '🐍', '🐫', '🔫', '👄', '🚲', '🍉', '💛', '💚'],
+    emojiList: ['✌', '😂', '😝', '😁', '😱', '👉', '🙌', '🍻', '🔥', '🌈', '☀', '🎈', '🌹', '💄', '🎀', '⚽', '🎾', '🏁', '😡', '👿', '🐻', '🐶', '🐬', '🐟', '🍀', '👀', '🚗', '🍎', '💝', '💙', '👌', '❤', '😍', '😉', '😓', '😳', '💪', '🍸', '🔑', '💖', '🌟', '🎉', '🌺', '🎶', '👠', '🏈', '⚾', '🏆', '👽', '💀', '🐵', '🐮', '🐩', '🐎', '💣', '👃', '👂', '🍓', '💘', '💜', '👊', '💋', '😘', '😜', '😵', '🙏', '👋', '🚽', '💃', '💎', '🚀', '🌙', '🎁', '⛄', '🌊', '⛵', '🏀', '🎱', '💰', '👶', '👸', '🐰', '🐷', '🐍', '🐫', '🔫', '👄', '🚲', '🍉', '💛', '💚'],
     emojiPoints: ['🔴','🟠','🟡','🟢','🔵','🟣'],
     welcomeGifs: [
         'https://media.giphy.com/media/LPaBB9d1GegMFC75Qf/giphy.gif',
@@ -51,4 +55,5 @@ module.exports = {
         'https://media.giphy.com/media/1iZS2vRXtTlBI1a0/giphy.gif',
         'https://media.giphy.com/media/iugZw96Gq1gmk/giphy.gif',
     ],
+
 };
