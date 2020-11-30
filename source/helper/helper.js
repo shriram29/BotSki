@@ -6,6 +6,8 @@ const getUserAvatar = async (bot, id) => {
     const { displayAvatarURL } = await bot.fetchUser(id).catch(console.error);
 }
 
+const fetch = require('node-fetch');
+
 const getRandomSubarray = (arr, size) => {
 
     var shuffled = arr.slice(0), i = arr.length, min = i - size, temp, index;
@@ -39,9 +41,17 @@ const getCurrentTime = () => {
     return timeNow;
 }
 
+const getImageFromURL = async (url) => {
+    let response = await fetch(url);
+    let buffer = await response.buffer();
+
+    return buffer;
+}
+
 module.exports = {
     getListOfChannels,
     getRandomElement,
     getRandomSubarray,
-    getCurrentTime
+    getCurrentTime,
+    getImageFromURL
 }
