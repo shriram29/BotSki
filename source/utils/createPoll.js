@@ -132,11 +132,11 @@ module.exports = async (message, text) => {
 
         let newEmbed = await structureResult(collected, mapping, embedParams);
         discordMessage.edit(newEmbed);
-
+        message.channel.send(newEmbed);
     })
 
-    
-    message.delete({timeout : 5000})
+    message.react('👍');
+    message.delete({timeout : 15000})
 
 }
 
